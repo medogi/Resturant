@@ -11,6 +11,7 @@ import org.springframework.scheduling.support.SimpleTriggerContext;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -140,7 +141,8 @@ public class MainService {
         int a = 0;
 
         //TODO i could not write this
-        List<Review> reviewLis = entityManager.createNativeQuery("Select * from review where resturant_id = 4");
+        Query query = entityManager.createNativeQuery("select * from review where resturant_id = 4", List.class);
+        List<Review> reviewLis = query.getResultList();
 
         for (Review review : reviewLis) {
             int x = 0;
